@@ -1,8 +1,12 @@
 import FilmCard from '../../components/film-card/film-card';
+import {PromoFilmData} from '../../types/film';
 
-const FILM_COUNT = 20;
+type MainPageProps = {
+  promoFilm: PromoFilmData;
+  filmCount: number;
+};
 
-function MainPage(): JSX.Element {
+function MainPage({promoFilm, filmCount}: MainPageProps): JSX.Element {
   return (
     <>
       <section className="film-card">
@@ -36,14 +40,19 @@ function MainPage(): JSX.Element {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img
+                src={promoFilm.poster}
+                width="218"
+                height="327"
+                alt={promoFilm.title}
+              />
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="film-card__title">{promoFilm.title}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">Drama</span>
-                <span className="film-card__year">2014</span>
+                <span className="film-card__genre">{promoFilm.genre}</span>
+                <span className="film-card__year">{promoFilm.release}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -105,7 +114,7 @@ function MainPage(): JSX.Element {
 
           <div className="catalog__films-list">
             {Array.from(
-              {length: FILM_COUNT},
+              {length: filmCount},
               (_, index) => <FilmCard key={index} />
             )}
           </div>

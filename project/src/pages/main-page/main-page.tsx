@@ -1,3 +1,4 @@
+import {Helmet} from 'react-helmet-async';
 import FilmCard from '../../components/film-card/film-card';
 import {PromoFilmData} from '../../types/film';
 
@@ -9,6 +10,10 @@ type MainPageProps = {
 function MainPage({promoFilm, filmCount}: MainPageProps): JSX.Element {
   return (
     <>
+      <Helmet>
+        <title>WTW. {promoFilm.title}</title>
+      </Helmet>
+
       <section className="film-card">
         <div className="film-card__bg">
           <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />

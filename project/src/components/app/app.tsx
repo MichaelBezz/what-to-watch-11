@@ -3,7 +3,7 @@ import {HelmetProvider} from 'react-helmet-async';
 
 import MainPage from '../../pages/main-page/main-page';
 import LoginPage from '../../pages/login-page/login-page';
-import MoviePage from '../../pages/movie-page/movie-page';
+import FilmPage from '../../pages/film-page/film-page';
 import PlayerPage from '../../pages/player-page/player-page';
 import ReviewPage from '../../pages/review-page/review-page';
 import MyListPage from '../../pages/my-list-page/my-list-page';
@@ -27,8 +27,8 @@ function App(): JSX.Element {
             element={<LoginPage />}
           />
           <Route
-            path={AppRoute.Movie}
-            element={<MoviePage />}
+            path={AppRoute.Film}
+            element={<FilmPage />}
           />
           <Route
             path={AppRoute.Player}
@@ -45,7 +45,7 @@ function App(): JSX.Element {
           <Route
             path={AppRoute.MyList}
             element={
-              <PrivateRoute authorizationStatus={AuthorizationStatus.Authorization}>
+              <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuthorization}>
                 <MyListPage />
               </PrivateRoute>
             }

@@ -1,4 +1,4 @@
-function FavoritePage(): JSX.Element {
+function MyListPage(): JSX.Element {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -129,4 +129,4 @@ function FavoritePage(): JSX.Element {
   );
 }
 
-export default FavoritePage;
+export default MyListPage;

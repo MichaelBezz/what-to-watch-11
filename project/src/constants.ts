@@ -8,4 +8,10 @@ export enum AppRoute {
   NotFound = '*'
 }
 
+export enum AuthorizationStatus {
+  Authorization = 'AUTHORIZATION',
+  NoAuthorization = 'NO_AUTHORIZATION',
+  Unknown = 'UNKNOWN'
+}
+
 export const FILM_COUNT = 20;

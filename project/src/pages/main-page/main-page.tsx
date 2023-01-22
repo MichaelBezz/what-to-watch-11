@@ -1,9 +1,9 @@
 import {Helmet} from 'react-helmet-async';
 import FilmCard from '../../components/film-card/film-card';
-import {PromoFilmData} from '../../types/film';
+import {Film} from '../../types/film';
 
 type MainPageProps = {
-  promoFilm: PromoFilmData;
+  promoFilm: Film;
   filmCount: number;
 };
 
@@ -11,7 +11,7 @@ function MainPage({promoFilm, filmCount}: MainPageProps): JSX.Element {
   return (
     <>
       <Helmet>
-        <title>WTW. {promoFilm.title}</title>
+        <title>WTW. {promoFilm.name}</title>
       </Helmet>
 
       <section className="film-card">
@@ -46,18 +46,18 @@ function MainPage({promoFilm, filmCount}: MainPageProps): JSX.Element {
           <div className="film-card__info">
             <div className="film-card__poster">
               <img
-                src={promoFilm.poster}
+                src={promoFilm.posterImage}
                 width="218"
                 height="327"
-                alt={promoFilm.title}
+                alt={promoFilm.name}
               />
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{promoFilm.title}</h2>
+              <h2 className="film-card__title">{promoFilm.name}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{promoFilm.genre}</span>
-                <span className="film-card__year">{promoFilm.release}</span>
+                <span className="film-card__year">{promoFilm.released}</span>
               </p>
 
               <div className="film-card__buttons">

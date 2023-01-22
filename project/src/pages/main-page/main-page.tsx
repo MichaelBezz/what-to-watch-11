@@ -1,13 +1,14 @@
 import {Helmet} from 'react-helmet-async';
-import FilmCard from '../../components/film-card/film-card';
-import {Film} from '../../types/film';
+import FilmsList from '../../components/films-list/films-list';
+import {Films} from '../../types/film';
 
 type MainPageProps = {
-  promoFilm: Film;
-  filmCount: number;
+  films: Films;
 };
 
-function MainPage({promoFilm, filmCount}: MainPageProps): JSX.Element {
+function MainPage({films}: MainPageProps): JSX.Element {
+  const promoFilm = films[0];
+
   return (
     <>
       <Helmet>
@@ -117,12 +118,7 @@ function MainPage({promoFilm, filmCount}: MainPageProps): JSX.Element {
             </li>
           </ul>
 
-          <div className="catalog__films-list">
-            {Array.from(
-              {length: filmCount},
-              (_, index) => <FilmCard key={index} />
-            )}
-          </div>
+          <FilmsList films={films} />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>

@@ -11,10 +11,16 @@ import MyListPage from '../../pages/my-list-page/my-list-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
 
-import {film} from '../../mock/films';
-import {AppRoute, AuthorizationStatus, FILM_COUNT} from '../../constants';
+import {Films} from '../../types/film';
+import {Reviews} from '../../types/review';
+import {AppRoute, AuthorizationStatus} from '../../constants';
 
-function App(): JSX.Element {
+type AppProps = {
+  films: Films;
+  reviews: Reviews;
+};
+
+function App({films, reviews}: AppProps): JSX.Element {
   const location = useLocation();
 
   useEffect(() => {
@@ -26,7 +32,7 @@ function App(): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Root}
-          element={<MainPage promoFilm={film} filmCount={FILM_COUNT} />}
+          element={<MainPage films={films} />}
         />
         <Route
           path={AppRoute.Login}

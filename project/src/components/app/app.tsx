@@ -57,7 +57,7 @@ function App({films, reviews}: AppProps): JSX.Element {
         <Route
           path={AppRoute.MyList}
           element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuthorization}>
+            <PrivateRoute authorizationStatus={AuthorizationStatus.Authorization}>
               <MyListPage />
             </PrivateRoute>
           }

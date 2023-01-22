@@ -1,8 +1,8 @@
 import {faker} from '@faker-js/faker';
 import {Films, Film} from '../types/film';
 
-export const createFilm = (): Film => ({
-  id: faker.datatype.number({max: 30}),
+export const createFilm = (id: number): Film => ({
+  id,
   name: faker.lorem.sentence(3),
   posterImage: faker.image.image(274, 410, true),
   previewImage: faker.image.image(280, 175, true),
@@ -22,7 +22,7 @@ export const createFilm = (): Film => ({
 });
 
 export const createFilms = (count = 8): Films =>
-  Array.from({length: count}, createFilm);
+  Array.from({length: count}, (_, index) => createFilm(index + 1));
 
-export const film = createFilm();
+export const film = createFilm(1);
 export const films = createFilms();

@@ -11,7 +11,7 @@ import MyListPage from '../../pages/my-list-page/my-list-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
 
-import {promoFilm} from '../../mock/promo-film';
+import {film} from '../../mock/films';
 import {AppRoute, AuthorizationStatus, FILM_COUNT} from '../../constants';
 
 function App(): JSX.Element {
@@ -26,7 +26,7 @@ function App(): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Root}
-          element={<MainPage promoFilm={promoFilm} filmCount={FILM_COUNT} />}
+          element={<MainPage promoFilm={film} filmCount={FILM_COUNT} />}
         />
         <Route
           path={AppRoute.Login}

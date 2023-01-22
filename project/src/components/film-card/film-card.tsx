@@ -1,12 +1,23 @@
-function FilmCard(): JSX.Element {
+import {Film} from '../../types/film';
+
+type FilmCardProps = {
+  film: Film;
+};
+
+function FilmCard({film}: FilmCardProps): JSX.Element {
   return (
     <article className="small-film-card catalog__films-card">
       <div className="small-film-card__image">
-        <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175" />
+        <img
+          src={film.previewImage}
+          width="280"
+          height="175"
+          alt={film.name}
+        />
       </div>
 
       <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href="film-page.html">Bohemian Rhapsody</a>
+        <a className="small-film-card__link" href="film-page.html">{film.name}</a>
       </h3>
     </article>
   );

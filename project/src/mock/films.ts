@@ -5,7 +5,7 @@ export const createFilm = (): Film => ({
   id: faker.datatype.number({max: 30}),
   name: faker.lorem.sentence(3),
   posterImage: faker.image.image(274, 410, true),
-  previewImage: faker.image.image(281, 175, true),
+  previewImage: faker.image.image(280, 175, true),
   backgroundImage: faker.image.image(1300, 552, true),
   backgroundColor: faker.color.rgb({format: 'hex', casing: 'lower'}),
   videoLink: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',

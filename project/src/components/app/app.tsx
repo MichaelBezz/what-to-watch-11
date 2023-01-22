@@ -31,7 +31,7 @@ function App({films, reviews}: AppProps): JSX.Element {
     <HelmetProvider>
       <Routes>
         <Route
-          path={AppRoute.Root}
+          path={AppRoute.Main}
           element={<MainPage films={films} />}
         />
         <Route

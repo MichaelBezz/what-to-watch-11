@@ -10,7 +10,7 @@ function Logo({isLight}: LogoProps): JSX.Element {
   return (
     <div className="logo">
       <Link
-        to={AppRoute.Root}
+        to={AppRoute.Main}
         className={cn('logo__link', {'logo__link--light': isLight})}
       >
         <span className="logo__letter logo__letter--1">W</span>

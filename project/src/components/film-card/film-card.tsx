@@ -1,3 +1,5 @@
+import {Link, generatePath} from 'react-router-dom';
+import {AppRoute} from '../../constants';
 import {Film} from '../../types/film';
 
 type FilmCardProps = {
@@ -24,7 +26,12 @@ function FilmCard({film, onActiveCard}: FilmCardProps): JSX.Element {
       </div>
 
       <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href="film-page.html">{name}</a>
+        <Link
+          className="small-film-card__link"
+          to={generatePath(AppRoute.Film, {id: `${id}`})}
+        >
+          {name}
+        </Link>
       </h3>
     </article>
   );

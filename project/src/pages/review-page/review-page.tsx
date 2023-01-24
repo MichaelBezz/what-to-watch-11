@@ -1,6 +1,8 @@
+import {Link, generatePath} from 'react-router-dom';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
 import {Film} from '../../types/film';
+import {AppRoute} from '../../constants';
 
 type ReviewPageProps = {
   film: Film;
@@ -8,6 +10,7 @@ type ReviewPageProps = {
 
 function ReviewPage({film}: ReviewPageProps): JSX.Element {
   const {
+    id,
     name,
     posterImage,
     backgroundImage,
@@ -29,7 +32,12 @@ function ReviewPage({film}: ReviewPageProps): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="film-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
+                <Link
+                  className="breadcrumbs__link"
+                  to={generatePath(AppRoute.Film, {id: `${id}`})}
+                >
+                  {name}
+                </Link>
               </li>
               <li className="breadcrumbs__item">
                 <a className="breadcrumbs__link">Add review</a>

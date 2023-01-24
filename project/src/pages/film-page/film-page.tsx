@@ -1,8 +1,12 @@
+import {Link, generatePath} from 'react-router-dom';
+
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
 import FilmsList from '../../components/films-list/films-list';
 import Footer from '../../components/footer/footer';
+
 import {Films, Film} from '../../types/film';
+import {AppRoute} from '../../constants';
 
 type FilmPageProps = {
   film: Film;
@@ -11,6 +15,7 @@ type FilmPageProps = {
 
 function FilmPage({film, similarFilms}: FilmPageProps): JSX.Element {
   const {
+    id,
     name,
     posterImage,
     backgroundImage,
@@ -56,7 +61,12 @@ function FilmPage({film, similarFilms}: FilmPageProps): JSX.Element {
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <a href="add-review.html" className="btn film-card__button">Add review</a>
+                <Link
+                  className="btn film-card__button"
+                  to={generatePath(AppRoute.Review, {id: `${id}`})}
+                >
+                  Add review
+                </Link>
               </div>
             </div>
           </div>

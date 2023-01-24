@@ -1,5 +1,5 @@
 export enum AppRoute {
-  Root = '/',
+  Main = '/',
   Login = '/login',
   Film = '/films/:id',
   Player = '/player/:id',
@@ -13,5 +13,3 @@ export enum AuthorizationStatus {
   NoAuthorization = 'NO_AUTHORIZATION',
   Unknown = 'UNKNOWN'
 }
-
-export const FILM_COUNT = 20;

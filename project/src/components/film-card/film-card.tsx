@@ -1,12 +1,37 @@
-function FilmCard(): JSX.Element {
+import {Link, generatePath} from 'react-router-dom';
+import {AppRoute} from '../../constants';
+import {Film} from '../../types/film';
+
+type FilmCardProps = {
+  film: Film;
+  onActiveCard: (id: number | null) => void;
+};
+
+function FilmCard({film, onActiveCard}: FilmCardProps): JSX.Element {
+  const {id, name, previewImage} = film;
+
   return (
-    <article className="small-film-card catalog__films-card">
+    <article
+      className="small-film-card catalog__films-card"
+      onMouseOver={() => onActiveCard(id)}
+      onMouseLeave={() => onActiveCard(null)}
+    >
       <div className="small-film-card__image">
-        <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175" />
+        <img
+          src={previewImage}
+          width="280"
+          height="175"
+          alt={name}
+        />
       </div>
 
       <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href="film-page.html">Bohemian Rhapsody</a>
+        <Link
+          className="small-film-card__link"
+          to={generatePath(AppRoute.Film, {id: `${id}`})}
+        >
+          {name}
+        </Link>
       </h3>
     </article>
   );

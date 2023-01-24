@@ -1,11 +1,14 @@
 import {Link} from 'react-router-dom';
-import { AppRoute } from '../../constants';
+import Footer from '../../components/footer/footer';
+import {AppRoute} from '../../constants';
 
 function NotFoundPage(): JSX.Element {
   return (
     <>
       <h1>404. Page not found</h1>
-      <Link to={AppRoute.Root}>Вернуться на главную</Link>
+      <Link to={AppRoute.Main}>Вернуться на главную</Link>
+
+      <Footer />
     </>
   );
 }

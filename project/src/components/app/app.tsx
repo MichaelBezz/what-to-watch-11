@@ -11,10 +11,16 @@ import MyListPage from '../../pages/my-list-page/my-list-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
 
-import {promoFilm} from '../../mock/promo-film';
-import {AppRoute, AuthorizationStatus, FILM_COUNT} from '../../constants';
+import {Films} from '../../types/film';
+import {Reviews} from '../../types/review';
+import {AppRoute, AuthorizationStatus} from '../../constants';
 
-function App(): JSX.Element {
+type AppProps = {
+  films: Films;
+  reviews: Reviews;
+};
+
+function App({films, reviews}: AppProps): JSX.Element {
   const location = useLocation();
 
   useEffect(() => {
@@ -25,8 +31,8 @@ function App(): JSX.Element {
     <HelmetProvider>
       <Routes>
         <Route
-          path={AppRoute.Root}
-          element={<MainPage promoFilm={promoFilm} filmCount={FILM_COUNT} />}
+          path={AppRoute.Main}
+          element={<MainPage films={films} />}
         />
         <Route
           path={AppRoute.Login}
@@ -34,25 +40,25 @@ function App(): JSX.Element {
         />
         <Route
           path={AppRoute.Film}
-          element={<FilmPage />}
+          element={<FilmPage film={films[0]} similarFilms={films} />}
         />
         <Route
           path={AppRoute.Player}
-          element={<PlayerPage />}
+          element={<PlayerPage film={films[0]} />}
         />
         <Route
           path={AppRoute.Review}
           element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.Authorization}>
-              <ReviewPage />
+              <ReviewPage film={films[0]} />
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.MyList}
           element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuthorization}>
-              <MyListPage />
+            <PrivateRoute authorizationStatus={AuthorizationStatus.Authorization}>
+              <MyListPage films={films} />
             </PrivateRoute>
           }
         />

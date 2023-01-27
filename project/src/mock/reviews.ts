@@ -12,7 +12,7 @@ export const createReview = (id: number): Review => ({
   }
 });
 
-export const createReviews = (count = 3): Reviews =>
+export const createReviews = (count = 6): Reviews =>
   Array.from({length: count}, (_, index) => createReview(index + 1));
 
 export const review = createReview(1);

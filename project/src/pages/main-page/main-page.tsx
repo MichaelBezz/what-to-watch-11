@@ -3,6 +3,7 @@ import {Helmet} from 'react-helmet-async';
 import PromoCard from '../../components/promo-card/promo-card';
 import GenreList from '../../components/genre-list/genre-list';
 import FilmsList from '../../components/films-list/films-list';
+import ShowMoreButton from '../../components/show-more-button/show-more-button';
 import Footer from '../../components/footer/footer';
 
 import {useAppSelector} from '../../hooks/use-app-selector';
@@ -31,9 +32,7 @@ function MainPage({films}: MainPageProps): JSX.Element {
 
           <FilmsList films={filmsByGenre} />
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          <ShowMoreButton />
         </section>
 
         <Footer />

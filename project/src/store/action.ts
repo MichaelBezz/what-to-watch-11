@@ -5,5 +5,6 @@ export const changeGenre = createAction('genre/changeGenre',
   (genre: Genre) => ({payload: genre})
 );
 
-export const getFilms = createAction('films/getFilms');
-export const getFilmsByGenre = createAction('films/getFilmsByGenre');
+export const getFilmsByGenre = createAction('films/getFilmsByGenre',
+  (genre: Genre) => ({payload: genre})
+);

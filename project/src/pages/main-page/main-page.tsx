@@ -5,6 +5,7 @@ import GenreList from '../../components/genre-list/genre-list';
 import FilmsList from '../../components/films-list/films-list';
 import Footer from '../../components/footer/footer';
 
+import {useAppSelector} from '../../hooks/use-app-selector';
 import {Films} from '../../types/film';
 
 type MainPageProps = {
@@ -12,6 +13,8 @@ type MainPageProps = {
 };
 
 function MainPage({films}: MainPageProps): JSX.Element {
+  const filmsByGenre = useAppSelector((state) => state.filmsByGenre);
+
   return (
     <>
       <Helmet>
@@ -26,7 +29,7 @@ function MainPage({films}: MainPageProps): JSX.Element {
 
           <GenreList />
 
-          <FilmsList films={films} />
+          <FilmsList films={filmsByGenre} />
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>

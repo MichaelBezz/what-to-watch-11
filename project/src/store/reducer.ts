@@ -21,10 +21,14 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(changeGenre, (state, action) => {
       state.genre = action.payload;
     })
-    .addCase(getFilmsByGenre, (state) => {
-      state.filmsByGenre = state.films.filter(
-        (film) => film.genre === state.genre
-      );
+    .addCase(getFilmsByGenre, (state, action) => {
+      state.filmsByGenre = state.films.filter((film) => {
+        if (action.payload === Genre.Default) {
+          return true;
+        }
+
+        return film.genre === action.payload;
+      });
     });
 });
 

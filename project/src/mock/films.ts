@@ -1,5 +1,6 @@
 import {faker} from '@faker-js/faker';
 import {Films, Film} from '../types/film';
+import {Genre} from '../constants';
 
 export const createFilm = (id: number): Film => ({
   id,
@@ -16,7 +17,7 @@ export const createFilm = (id: number): Film => ({
   director: faker.name.fullName(),
   starring: Array.from({length: 3}, () => faker.name.fullName()),
   runTime: faker.datatype.number(120),
-  genre: faker.lorem.word(),
+  genre: faker.helpers.arrayElement([...Object.values(Genre)]),
   released: faker.datatype.number({min: 1990, max: 2023}),
   isFavorite: faker.datatype.boolean()
 });

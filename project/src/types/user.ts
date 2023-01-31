@@ -1,6 +1,6 @@
 import {Token} from './authorization';
 
-export type User = {
+export type UserData = {
   avatarUrl: string;
   email: string;
   id: number;
@@ -8,4 +8,4 @@ export type User = {
   token: Token;
 };
 
-export type UserReview = Pick<User, 'id' | 'name'>;
+export type UserReview = Pick<UserData, 'id' | 'name'>;

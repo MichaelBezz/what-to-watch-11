@@ -8,6 +8,16 @@ export enum AppRoute {
   NotFound = '*'
 }
 
+export enum APIRoute {
+  Login = '/login',
+  Logout = '/logout',
+  Films = '/films',
+  SimilarFilms = '/similar',
+  FavoriteFilms = '/favorite',
+  PromoFilm = '/promo',
+  Reviews = '/comments'
+}
+
 export enum AuthorizationStatus {
   Authorization = 'AUTHORIZATION',
   NoAuthorization = 'NO_AUTHORIZATION',
@@ -24,12 +34,6 @@ export enum Reducer {
   Reviews = 'REVIEWS'
 }
 
-export enum Tab {
-  Overview = 'Overview',
-  Details = 'Details',
-  Reviews = 'Reviews'
-}
-
 export enum Genre {
   Default = 'All genres',
   Comedies = 'Comedies',
@@ -41,4 +45,10 @@ export enum Genre {
   Romance = 'Romance',
   SciFi = 'Sci-Fi',
   Thrillers = 'Thrillers'
+}
+
+export enum Tab {
+  Overview = 'Overview',
+  Details = 'Details',
+  Reviews = 'Reviews'
 }

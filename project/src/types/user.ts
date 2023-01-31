@@ -1,4 +1,4 @@
-import {Token} from './token';
+import {Token} from './authorization';
 
 export type User = {
   avatarUrl: string;

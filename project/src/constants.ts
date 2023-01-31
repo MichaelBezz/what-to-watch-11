@@ -14,6 +14,16 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN'
 }
 
+export enum Reducer {
+  User = 'USER',
+  Films = 'FILMS',
+  SimilarFilms = 'SIMILAR_FILMS',
+  FavoriteFilms = 'FAVORITE_FILMS',
+  Film = 'FILM',
+  PromoFilm = 'PROMO_FILM',
+  Reviews = 'REVIEWS'
+}
+
 export enum Tab {
   Overview = 'Overview',
   Details = 'Details',

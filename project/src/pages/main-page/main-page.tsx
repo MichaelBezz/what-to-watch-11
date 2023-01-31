@@ -1,3 +1,4 @@
+import {useState, useEffect} from 'react';
 import {Helmet} from 'react-helmet-async';
 
 import PromoCard from '../../components/promo-card/promo-card';
@@ -7,14 +8,22 @@ import ShowMoreButton from '../../components/show-more-button/show-more-button';
 import Footer from '../../components/footer/footer';
 
 import {useAppSelector} from '../../hooks/use-app-selector';
-import {Films} from '../../types/film';
 
-type MainPageProps = {
-  films: Films;
-};
+const FILMS_PER_STEP = 8;
 
-function MainPage({films}: MainPageProps): JSX.Element {
+function MainPage(): JSX.Element {
+  const [filmsDisplayed, setFilmsDisplayed] = useState<number>(0);
   const filmsByGenre = useAppSelector((state) => state.filmsByGenre);
+
+  useEffect(() => {
+    setFilmsDisplayed(Math.min(FILMS_PER_STEP, filmsByGenre.length));
+  }, [filmsByGenre]);
+
+  const handleShowMoreButtonClick = () => {
+    setFilmsDisplayed((prevFilmsDisplayed) =>
+      Math.min(prevFilmsDisplayed + FILMS_PER_STEP, filmsByGenre.length)
+    );
+  };
 
   return (
     <>
@@ -22,7 +31,7 @@ function MainPage({films}: MainPageProps): JSX.Element {
         <title>What To Watch</title>
       </Helmet>
 
-      <PromoCard promoFilm={films[0]} />
+      <PromoCard promoFilm={filmsByGenre[0]} />
 
       <div className="page-content">
         <section className="catalog">
@@ -30,9 +39,11 @@ function MainPage({films}: MainPageProps): JSX.Element {
 
           <GenreList />
 
-          <FilmsList films={filmsByGenre} />
+          <FilmsList films={filmsByGenre.slice(0, filmsDisplayed)} />
 
-          <ShowMoreButton />
+          {filmsByGenre.length > filmsDisplayed && (
+            <ShowMoreButton onClick={handleShowMoreButtonClick} />
+          )}
         </section>
 
         <Footer />

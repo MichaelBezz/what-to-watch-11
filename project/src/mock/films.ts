@@ -26,4 +26,4 @@ export const createFilms = (count = 8): Films =>
   Array.from({length: count}, (_, index) => createFilm(index + 1));
 
 export const film = createFilm(1);
-export const films = createFilms();
+export const films = createFilms(15);

@@ -1,10 +1,9 @@
 import {store} from '../store/store';
 import {UserData} from './user';
-import {Films} from './film';
+import {Films, Film} from './film';
 import {AuthorizationStatus} from '../constants';
 
 export type State = ReturnType<typeof store.getState>;
-
 export type AppDispatch = typeof store.dispatch;
 
 export type UserDataState = {
@@ -15,4 +14,9 @@ export type UserDataState = {
 export type FilmsDataState = {
   films: Films;
   isFilmsLoading: boolean;
+};
+
+export type PromoFilmDataState = {
+  film: Film | null;
+  isPromoFilmLoading: boolean;
 };

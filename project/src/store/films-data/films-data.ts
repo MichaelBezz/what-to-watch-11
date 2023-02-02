@@ -1,9 +1,10 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {fetchFilms} from './api-actions';
 import {FilmsDataState} from '../../types/state';
-import {Reducer} from '../../constants';
+import {Reducer, DEFAULT_GENRE} from '../../constants';
 
 const initialState: FilmsDataState = {
+  activeGenre: DEFAULT_GENRE,
   films: [],
   isFilmsLoading: false
 };
@@ -11,7 +12,11 @@ const initialState: FilmsDataState = {
 export const filmsData = createSlice({
   name: Reducer.Films,
   initialState,
-  reducers: {},
+  reducers: {
+    setGenre: (state, action: PayloadAction<string>) => {
+      state.activeGenre = action.payload;
+    }
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchFilms.pending, (state) => {
@@ -27,3 +32,5 @@ export const filmsData = createSlice({
       });
   }
 });
+
+export const {setGenre} = filmsData.actions;

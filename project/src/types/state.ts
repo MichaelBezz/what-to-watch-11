@@ -12,6 +12,7 @@ export type UserDataState = {
 };
 
 export type FilmsDataState = {
+  activeGenre: string;
   films: Films;
   isFilmsLoading: boolean;
 };

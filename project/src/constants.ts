@@ -34,6 +34,12 @@ export enum Reducer {
   Reviews = 'REVIEWS'
 }
 
+export enum Tab {
+  Overview = 'Overview',
+  Details = 'Details',
+  Reviews = 'Reviews'
+}
+
 export enum Genre {
   Default = 'All genres',
   Comedies = 'Comedies',
@@ -41,14 +47,10 @@ export enum Genre {
   Documentary = 'Documentary',
   Dramas = 'Dramas',
   Horror = 'Horror',
-  KidsFamily = 'Kids & Family',
+  Family = 'Family',
   Romance = 'Romance',
   SciFi = 'Sci-Fi',
   Thrillers = 'Thrillers'
 }
 
-export enum Tab {
-  Overview = 'Overview',
-  Details = 'Details',
-  Reviews = 'Reviews'
-}
+export const DEFAULT_GENRE = 'All genres';

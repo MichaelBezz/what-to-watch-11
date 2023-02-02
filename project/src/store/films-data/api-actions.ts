@@ -5,7 +5,7 @@ import {AppDispatch, State} from '../../types/state';
 import {Films} from '../../types/film';
 import {Reducer, APIRoute} from '../../constants';
 
-export const fetchFilmsAction = createAsyncThunk<Films | void, undefined, {
+export const fetchFilms = createAsyncThunk<Films | void, undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;

@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {checkAuthorizationAction, loginAction, logoutAction} from './api-actions';
+import {checkAuthorization, login, logout} from './api-actions';
 import {UserDataState} from '../../types/state';
 import {Reducer, AuthorizationStatus} from '../../constants';
 
@@ -14,23 +14,23 @@ export const userData = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(checkAuthorizationAction.fulfilled, (state, action) => {
+      .addCase(checkAuthorization.fulfilled, (state, action) => {
         state.authorizationStatus = AuthorizationStatus.Authorization;
         state.userData = action.payload ?? null;
       })
-      .addCase(checkAuthorizationAction.rejected, (state) => {
+      .addCase(checkAuthorization.rejected, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuthorization;
         state.userData = null;
       })
-      .addCase(loginAction.fulfilled, (state, action) => {
+      .addCase(login.fulfilled, (state, action) => {
         state.authorizationStatus = AuthorizationStatus.Authorization;
         state.userData = action.payload ?? null;
       })
-      .addCase(loginAction.rejected, (state) => {
+      .addCase(login.rejected, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuthorization;
         state.userData = null;
       })
-      .addCase(logoutAction.fulfilled, (state) => {
+      .addCase(logout.fulfilled, (state) => {
         state.authorizationStatus = AuthorizationStatus.NoAuthorization;
         state.userData = null;
       });

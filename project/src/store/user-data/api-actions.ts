@@ -7,7 +7,7 @@ import {AuthorizationData} from '../../types/authorization';
 import {UserData} from '../../types/user';
 import {Reducer, APIRoute} from '../../constants';
 
-export const checkAuthorizationAction = createAsyncThunk<UserData | void, undefined, {
+export const checkAuthorization = createAsyncThunk<UserData | void, undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -24,7 +24,7 @@ export const checkAuthorizationAction = createAsyncThunk<UserData | void, undefi
   }
 );
 
-export const loginAction = createAsyncThunk<UserData | void, AuthorizationData, {
+export const login = createAsyncThunk<UserData | void, AuthorizationData, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;
@@ -42,7 +42,7 @@ export const loginAction = createAsyncThunk<UserData | void, AuthorizationData, 
   }
 );
 
-export const logoutAction = createAsyncThunk<void, undefined, {
+export const logout = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
   state: State;
   extra: AxiosInstance;

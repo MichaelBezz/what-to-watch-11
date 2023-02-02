@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {fetchPromoFilmAction} from './api-actions';
+import {fetchPromoFilm} from './api-actions';
 import {PromoFilmDataState} from '../../types/state';
 import {Reducer} from '../../constants';
 
@@ -14,14 +14,14 @@ export const promoFilmData = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
-      .addCase(fetchPromoFilmAction.pending, (state) => {
+      .addCase(fetchPromoFilm.pending, (state) => {
         state.isPromoFilmLoading = true;
       })
-      .addCase(fetchPromoFilmAction.fulfilled, (state, action) => {
+      .addCase(fetchPromoFilm.fulfilled, (state, action) => {
         state.isPromoFilmLoading = false;
         state.film = action.payload ?? null;
       })
-      .addCase(fetchPromoFilmAction.rejected, (state) => {
+      .addCase(fetchPromoFilm.rejected, (state) => {
         state.isPromoFilmLoading = false;
         state.film = null;
       });

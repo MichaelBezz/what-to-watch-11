@@ -9,7 +9,7 @@ export const getIsFilmsLoading = (state: State): boolean => state[Reducer.Films]
 
 export const getGenres = createSelector(
   [getFilms],
-  (films) => {
+  (films): string[] => {
     const genres: Set<string> = new Set();
     films.forEach((film) => genres.add(film.genre));
     return [DEFAULT_GENRE, ...genres];
@@ -18,7 +18,7 @@ export const getGenres = createSelector(
 
 export const getFilmsByGenre = createSelector(
   [getActiveGenre, getFilms],
-  (genre, films) => films.filter((film) => {
+  (genre, films): Films => films.filter((film) => {
     if (genre === DEFAULT_GENRE) {
       return true;
     }

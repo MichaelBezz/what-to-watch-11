@@ -2,14 +2,13 @@ import {Link} from 'react-router-dom';
 import {useAppDispatch} from '../../hooks/use-app-dispatch';
 import {useAppSelector} from '../../hooks/use-app-selector';
 import {logout} from '../../store/user-data/api-actions';
-import {getAuthorizationStatus, getUserData} from '../../store/user-data/selectors';
-import {AppRoute, AuthorizationStatus} from '../../constants';
+import {getUserData, getIsAuthorization} from '../../store/user-data/selectors';
+import {AppRoute} from '../../constants';
 
 function UserBlock(): JSX.Element {
   const dispatch = useAppDispatch();
   const userData = useAppSelector(getUserData);
-  const authorizationStatus = useAppSelector(getAuthorizationStatus);
-  const isAuthorization = authorizationStatus === AuthorizationStatus.Authorization;
+  const isAuthorization = useAppSelector(getIsAuthorization);
 
   const handleSignOutClick = () => {
     dispatch(logout());

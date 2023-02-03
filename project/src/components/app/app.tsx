@@ -3,7 +3,7 @@ import {Routes, Route, useLocation} from 'react-router-dom';
 import {HelmetProvider} from 'react-helmet-async';
 
 import MainPage from '../../pages/main-page/main-page';
-// import LoginPage from '../../pages/login-page/login-page';
+import LoginPage from '../../pages/login-page/login-page';
 // import FilmPage from '../../pages/film-page/film-page';
 // import PlayerPage from '../../pages/player-page/player-page';
 // import ReviewPage from '../../pages/review-page/review-page';
@@ -27,35 +27,35 @@ function App(): JSX.Element {
           path={AppRoute.Main}
           element={<MainPage />}
         />
-        {/* <Route
+        <Route
           path={AppRoute.Login}
           element={<LoginPage />}
         />
-        <Route
+        {/* <Route
           path={AppRoute.Film}
           element={<FilmPage film={films[0]} similarFilms={films} reviews={reviews} />}
-        />
-        <Route
+        /> */}
+        {/* <Route
           path={AppRoute.Player}
           element={<PlayerPage film={films[0]} />}
-        />
-        <Route
+        /> */}
+        {/* <Route
           path={AppRoute.Review}
           element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.Authorization}>
               <ReviewPage film={films[0]} />
             </PrivateRoute>
           }
-        />
-        <Route
+        /> */}
+        {/* <Route
           path={AppRoute.MyList}
           element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.Authorization}>
               <MyListPage films={films} />
             </PrivateRoute>
           }
-        />
-        <Route
+        /> */}
+        {/* <Route
           path={AppRoute.NotFound}
           element={<NotFoundPage />}
         /> */}

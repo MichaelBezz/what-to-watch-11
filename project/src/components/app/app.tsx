@@ -8,7 +8,7 @@ import LoginPage from '../../pages/login-page/login-page';
 // import PlayerPage from '../../pages/player-page/player-page';
 // import ReviewPage from '../../pages/review-page/review-page';
 // import MyListPage from '../../pages/my-list-page/my-list-page';
-// import NotFoundPage from '../../pages/not-found-page/not-found-page';
+import NotFoundPage from '../../pages/not-found-page/not-found-page';
 // import PrivateRoute from '../private-route/private-route';
 
 import {AppRoute} from '../../constants';
@@ -55,10 +55,10 @@ function App(): JSX.Element {
             </PrivateRoute>
           }
         /> */}
-        {/* <Route
+        <Route
           path={AppRoute.NotFound}
           element={<NotFoundPage />}
-        /> */}
+        />
       </Routes>
     </HelmetProvider>
   );

@@ -6,17 +6,9 @@ import TabsList from '../../components/tabs-list/tabs-list';
 import FilmsList from '../../components/films-list/films-list';
 import Footer from '../../components/footer/footer';
 
-import {Films, Film} from '../../types/film';
-import {Reviews} from '../../types/review';
 import {AppRoute} from '../../constants';
 
-type FilmPageProps = {
-  film: Film;
-  similarFilms: Films;
-  reviews: Reviews;
-};
-
-function FilmPage({film, similarFilms, reviews}: FilmPageProps): JSX.Element {
+function FilmPage(): JSX.Element {
   const {
     id,
     name,

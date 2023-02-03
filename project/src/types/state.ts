@@ -17,6 +17,11 @@ export type FilmsDataState = {
   isFilmsLoading: boolean;
 };
 
+export type FilmDataState = {
+  film: Film | null;
+  isFilmLoading: boolean;
+};
+
 export type PromoFilmDataState = {
   film: Film | null;
   isPromoFilmLoading: boolean;

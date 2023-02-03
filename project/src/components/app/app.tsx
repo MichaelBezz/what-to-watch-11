@@ -4,7 +4,7 @@ import {HelmetProvider} from 'react-helmet-async';
 
 import MainPage from '../../pages/main-page/main-page';
 import LoginPage from '../../pages/login-page/login-page';
-// import FilmPage from '../../pages/film-page/film-page';
+import FilmPage from '../../pages/film-page/film-page';
 // import PlayerPage from '../../pages/player-page/player-page';
 // import ReviewPage from '../../pages/review-page/review-page';
 // import MyListPage from '../../pages/my-list-page/my-list-page';
@@ -31,10 +31,10 @@ function App(): JSX.Element {
           path={AppRoute.Login}
           element={<LoginPage />}
         />
-        {/* <Route
+        <Route
           path={AppRoute.Film}
-          element={<FilmPage film={films[0]} similarFilms={films} reviews={reviews} />}
-        /> */}
+          element={<FilmPage />}
+        />
         {/* <Route
           path={AppRoute.Player}
           element={<PlayerPage film={films[0]} />}

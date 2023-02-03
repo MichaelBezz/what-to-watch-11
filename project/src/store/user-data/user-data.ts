@@ -11,7 +11,11 @@ const initialState: UserDataState = {
 export const userData = createSlice({
   name: Reducer.User,
   initialState,
-  reducers: {},
+  reducers: {
+    setUserDataToDefault: (state) => {
+      state = initialState;
+    }
+  },
   extraReducers(builder) {
     builder
       .addCase(checkAuthorization.fulfilled, (state, action) => {
@@ -36,3 +40,5 @@ export const userData = createSlice({
       });
   }
 });
+
+export const {setUserDataToDefault} = userData.actions;

@@ -1,12 +1,12 @@
+import {useEffect} from 'react';
+import {useAppDispatch} from '../../hooks/use-app-dispatch';
+import {useAppSelector} from '../../hooks/use-app-selector';
+import {fetchReviews} from '../../store/reviews-data/api-actions';
+import {getReviews, getIsReviewsLoading} from '../../store/reviews-data/selectors';
 import ReviewCard from '../review-card/review-card';
+import Loader from '../loader/loader';
 import {FilmId} from '../../types/film';
 import {Reviews} from '../../types/review';
-import { useEffect } from 'react';
-import { useAppDispatch } from '../../hooks/use-app-dispatch';
-import { fetchReviews } from '../../store/reviews-data/api-actions';
-import { useAppSelector } from '../../hooks/use-app-selector';
-import { getReviews, getIsReviewsLoading } from '../../store/reviews-data/selectors';
-import Loader from '../loader/loader';
 
 type TabReviewsProps = {
   filmId: FilmId;
@@ -18,12 +18,12 @@ const FilterPredicate: Record<string, (item: unknown, index: number) => boolean>
 } as const;
 
 const getReviewsByColumn = (
-  reviews: Reviews | null,
+  reviews: Reviews,
   predicate: typeof FilterPredicate[keyof typeof FilterPredicate]
 ) =>
   reviews
-    ?.filter(predicate)
-    ?.map((review) => (
+    .filter(predicate)
+    .map((review) => (
       <ReviewCard key={review.id} review={review} />
     ));
 

@@ -4,7 +4,7 @@ import {ReviewsDataState} from '../../types/state';
 import {Reducer} from '../../constants';
 
 const initialState: ReviewsDataState = {
-  reviews: null,
+  reviews: [],
   isReviewsLoading: false
 };
 
@@ -19,11 +19,11 @@ export const reviewsData = createSlice({
       })
       .addCase(fetchReviews.fulfilled, (state, action) => {
         state.isReviewsLoading = false;
-        state.reviews = action.payload ?? null;
+        state.reviews = action.payload ?? [];
       })
       .addCase(fetchReviews.rejected, (state) => {
         state.isReviewsLoading = false;
-        state.reviews = null;
+        state.reviews = [];
       });
   }
 });

@@ -18,6 +18,11 @@ export type FilmsDataState = {
   isFilmsLoading: boolean;
 };
 
+export type SimilarFilmsDataState = {
+  films: Films;
+  isSimilarFilmsLoading: boolean;
+};
+
 export type FilmDataState = {
   film: Film | null;
   isFilmLoading: boolean;
@@ -29,6 +34,6 @@ export type PromoFilmDataState = {
 };
 
 export type ReviewsDataState = {
-  reviews: Reviews | null;
+  reviews: Reviews;
   isReviewsLoading: boolean;
 };

@@ -23,6 +23,11 @@ export type SimilarFilmsDataState = {
   isSimilarFilmsLoading: boolean;
 };
 
+export type FavoriteFilmsDataState = {
+  films: Films;
+  isFavoriteFilmsLoading: boolean;
+};
+
 export type FilmDataState = {
   film: Film | null;
   isFilmLoading: boolean;

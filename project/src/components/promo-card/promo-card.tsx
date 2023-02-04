@@ -7,14 +7,7 @@ type PromoCardProps = {
 };
 
 function PromoCard({promoFilm}: PromoCardProps): JSX.Element {
-  const {
-    name,
-    posterImage,
-    backgroundImage,
-    backgroundColor,
-    genre,
-    released
-  } = promoFilm;
+  const {name, posterImage, backgroundImage, backgroundColor, genre, released} = promoFilm;
 
   return (
     <section className="film-card" style={{backgroundColor}}>

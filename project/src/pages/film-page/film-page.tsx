@@ -8,6 +8,7 @@ import {fetchFilmById} from '../../store/film-data/api-actions';
 import {fetchSimilarFilms} from '../../store/similar-films-data/api-actions';
 import {getFilm, getIsFilmLoading} from '../../store/film-data/selectors';
 import {getSimilarFilms, getIsSimilarFilmsLoading} from '../../store/similar-films-data/selectors';
+import {getIsAuthorization} from '../../store/user-data/selectors';
 
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
@@ -30,6 +31,7 @@ function FilmPage(): JSX.Element {
   const isFilmLoading = useAppSelector(getIsFilmLoading);
   const similarFilms = useAppSelector(getSimilarFilms);
   const isSimilarFilmLoading = useAppSelector(getIsSimilarFilmsLoading);
+  const isAuthorization = useAppSelector(getIsAuthorization);
 
   useEffect(() => {
     let isMounted = true;
@@ -95,12 +97,15 @@ function FilmPage(): JSX.Element {
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <Link
-                  className="btn film-card__button"
-                  to={generatePath(AppRoute.Review, {id: `${filmId}`})}
-                >
-                  Add review
-                </Link>
+
+                {isAuthorization && (
+                  <Link
+                    className="btn film-card__button"
+                    to={generatePath(AppRoute.Review, {id: `${filmId}`})}
+                  >
+                    Add review
+                  </Link>
+                )}
               </div>
             </div>
           </div>

@@ -10,18 +10,14 @@ import {getIsAuthorization} from '../../store/user-data/selectors';
 import Logo from '../../components/logo/logo';
 import Footer from '../../components/footer/footer';
 
+import {AuthorizationData} from '../../types/authorization';
 import {AppRoute} from '../../constants';
-
-type FormData = {
-  email: string;
-  password: string;
-};
 
 function LoginPage(): JSX.Element {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const isAuthorization = useAppSelector(getIsAuthorization);
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<AuthorizationData>({
     email: '',
     password: ''
   });

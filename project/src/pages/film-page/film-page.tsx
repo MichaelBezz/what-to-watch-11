@@ -1,26 +1,57 @@
-import {Link, generatePath} from 'react-router-dom';
+import {useEffect} from 'react';
+import {Link, generatePath, useParams} from 'react-router-dom';
+import {Helmet} from 'react-helmet-async';
+
+import {useAppDispatch} from '../../hooks/use-app-dispatch';
+import {useAppSelector} from '../../hooks/use-app-selector';
+import {fetchFilmById} from '../../store/film-data/api-actions';
+import {getFilm, getIsFilmLoading} from '../../store/film-data/selectors';
 
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
 import TabsList from '../../components/tabs-list/tabs-list';
 import FilmsList from '../../components/films-list/films-list';
 import Footer from '../../components/footer/footer';
+import Loader from '../../components/loader/loader';
+import NotFoundPage from '../not-found-page/not-found-page';
 
 import {AppRoute} from '../../constants';
 
 function FilmPage(): JSX.Element {
-  const {
-    id,
-    name,
-    posterImage,
-    backgroundImage,
-    backgroundColor,
-    genre,
-    released
-  } = film;
+  const dispatch = useAppDispatch();
+  const {id} = useParams();
+  const filmId = Number(id);
+  const film = useAppSelector(getFilm);
+  const isFilmLoading = useAppSelector(getIsFilmLoading);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    if (isMounted && filmId) {
+      dispatch(fetchFilmById(filmId));
+    }
+
+    return () => {
+      isMounted = false;
+    };
+  }, [dispatch, filmId]);
+
+  if (isFilmLoading) {
+    return <Loader />;
+  }
+
+  if (!film) {
+    return <NotFoundPage />;
+  }
+
+  const {name, posterImage, backgroundImage, backgroundColor, genre, released} = film;
 
   return (
     <>
+      <Helmet>
+        <title>WTW: {name}</title>
+      </Helmet>
+
       <section className="film-card film-card--full" style={{backgroundColor}}>
         <div className="film-card__hero">
           <div className="film-card__bg">
@@ -58,7 +89,7 @@ function FilmPage(): JSX.Element {
                 </button>
                 <Link
                   className="btn film-card__button"
-                  to={generatePath(AppRoute.Review, {id: `${id}`})}
+                  to={generatePath(AppRoute.Review, {id: `${filmId}`})}
                 >
                   Add review
                 </Link>
@@ -73,7 +104,7 @@ function FilmPage(): JSX.Element {
               <img src={posterImage} width="218" height="327" alt={name} />
             </div>
 
-            <TabsList film={film} reviews={reviews} />
+            <TabsList film={film} />
           </div>
         </div>
       </section>
@@ -82,7 +113,7 @@ function FilmPage(): JSX.Element {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <FilmsList films={similarFilms} />
+          {/* <FilmsList films={similarFilms} /> */}
         </section>
 
         <Footer />

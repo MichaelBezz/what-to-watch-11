@@ -1,4 +1,6 @@
-export type Authorization = {
+export type Token = string;
+
+export type AuthorizationData = {
   email: string;
   password: string;
 };

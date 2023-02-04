@@ -1,26 +1,33 @@
-import {Fragment, useState, ChangeEvent} from 'react';
+import {Fragment, useState, ChangeEvent, FormEvent} from 'react';
+import {NewReview} from '../../types/review';
 
-type FormData = {
-  rating: number;
-  review: string;
+type ReviewFormProps = {
+  onSubmit: (data: NewReview) => void;
 };
 
 const RATING_RANGE = 10;
 
-function ReviewForm(): JSX.Element {
-  const [formData, setFormData] = useState<FormData>({
+function ReviewForm({onSubmit}: ReviewFormProps): JSX.Element {
+  const [formData, setFormData] = useState<NewReview>({
     rating: 0,
-    review: ''
+    comment: ''
   });
 
-  const handleFieldChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleFieldChange = (
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const {name, value} = event.target;
     setFormData({...formData, [name]: value});
   };
 
+  const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    onSubmit(formData);
+  };
+
   return (
     <div className="add-review">
-      <form action="#" className="add-review__form">
+      <form action="#" className="add-review__form" onSubmit={handleFormSubmit}>
         <div className="rating">
           <div className="rating__stars">
             {Array.from({length: RATING_RANGE}, (_, index) => {
@@ -35,7 +42,6 @@ function ReviewForm(): JSX.Element {
                     name="rating"
                     value={rating}
                     onChange={handleFieldChange}
-                    checked={rating === formData.rating}
                   />
                   <label
                     className="rating__label"
@@ -53,8 +59,8 @@ function ReviewForm(): JSX.Element {
           <textarea
             className="add-review__textarea"
             id="review-text"
-            name="review"
-            value={formData.review}
+            name="comment"
+            value={formData.comment}
             placeholder="Review text"
             onChange={handleFieldChange}
           >

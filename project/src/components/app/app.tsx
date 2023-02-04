@@ -5,22 +5,15 @@ import {HelmetProvider} from 'react-helmet-async';
 import MainPage from '../../pages/main-page/main-page';
 import LoginPage from '../../pages/login-page/login-page';
 import FilmPage from '../../pages/film-page/film-page';
-import PlayerPage from '../../pages/player-page/player-page';
 import ReviewPage from '../../pages/review-page/review-page';
-import MyListPage from '../../pages/my-list-page/my-list-page';
+// import PlayerPage from '../../pages/player-page/player-page';
+// import MyListPage from '../../pages/my-list-page/my-list-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
 
-import {Films} from '../../types/film';
-import {Reviews} from '../../types/review';
-import {AppRoute, AuthorizationStatus} from '../../constants';
+import {AppRoute} from '../../constants';
 
-type AppProps = {
-  films: Films;
-  reviews: Reviews;
-};
-
-function App({films, reviews}: AppProps): JSX.Element {
+function App(): JSX.Element {
   const location = useLocation();
 
   useEffect(() => {
@@ -30,42 +23,34 @@ function App({films, reviews}: AppProps): JSX.Element {
   return (
     <HelmetProvider>
       <Routes>
-        <Route
-          path={AppRoute.Main}
-          element={<MainPage />}
-        />
-        <Route
-          path={AppRoute.Login}
-          element={<LoginPage />}
-        />
-        <Route
-          path={AppRoute.Film}
-          element={<FilmPage film={films[0]} similarFilms={films} reviews={reviews} />}
-        />
-        <Route
+        <Route path={AppRoute.Main} element={<MainPage />} />
+        <Route path={AppRoute.Login} element={<LoginPage />} />
+
+        <Route path={AppRoute.Film}>
+          <Route index element={<FilmPage />}/>
+          <Route
+            path={AppRoute.Review}
+            element={
+              <PrivateRoute>
+                <ReviewPage />
+              </PrivateRoute>
+            }
+          />
+        </Route>
+
+        {/* <Route
           path={AppRoute.Player}
           element={<PlayerPage film={films[0]} />}
-        />
-        <Route
-          path={AppRoute.Review}
-          element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.Authorization}>
-              <ReviewPage film={films[0]} />
-            </PrivateRoute>
-          }
-        />
-        <Route
+        /> */}
+        {/* <Route
           path={AppRoute.MyList}
           element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.Authorization}>
               <MyListPage films={films} />
             </PrivateRoute>
           }
-        />
-        <Route
-          path={AppRoute.NotFound}
-          element={<NotFoundPage />}
-        />
+        /> */}
+        <Route path={AppRoute.NotFound} element={<NotFoundPage />} />
       </Routes>
     </HelmetProvider>
   );

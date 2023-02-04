@@ -1,15 +1,31 @@
-import {Link} from 'react-router-dom';
+import {useEffect} from 'react';
+import {Link, useSearchParams} from 'react-router-dom';
 import cn from 'classnames';
 import {useAppDispatch} from '../../hooks/use-app-dispatch';
 import {useAppSelector} from '../../hooks/use-app-selector';
-import {changeGenre, getFilmsByGenre} from '../../store/action';
-import {Genre} from '../../constants';
-
-const genres: Genre[] = Object.values(Genre);
+import {setGenre} from '../../store/films-data/films-data';
+import {getGenres, getActiveGenre} from '../../store/films-data/selectors';
+import {DEFAULT_GENRE} from '../../constants';
 
 function GenreList (): JSX.Element {
   const dispatch = useAppDispatch();
-  const activeGenre = useAppSelector((state) => state.genre);
+  const genres = useAppSelector(getGenres);
+  const activeGenre = useAppSelector(getActiveGenre);
+  const [searchParams] = useSearchParams();
+  const searchGenre = searchParams.get('genre');
+
+  useEffect(() => {
+    if (searchGenre === activeGenre) {
+      return;
+    }
+
+    if (searchGenre) {
+      dispatch(setGenre(searchGenre));
+      return;
+    }
+
+    dispatch(setGenre(DEFAULT_GENRE));
+  }, [dispatch, activeGenre, searchGenre]);
 
   return (
     <ul className="catalog__genres-list">
@@ -20,14 +36,7 @@ function GenreList (): JSX.Element {
             {'catalog__genres-item--active': genre === activeGenre}
           )}
         >
-          <Link
-            className="catalog__genres-link"
-            to={`?genre=${genre}`}
-            onClick={() => {
-              dispatch(changeGenre(genre));
-              dispatch(getFilmsByGenre(genre));
-            }}
-          >
+          <Link className="catalog__genres-link" to={`?genre=${genre}`}>
             {genre}
           </Link>
         </li>

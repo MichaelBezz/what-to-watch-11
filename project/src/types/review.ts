@@ -9,5 +9,4 @@ export type Review = {
 };
 
 export type Reviews = Review[];
-
 export type NewReview = Pick<Review, 'comment' | 'rating'>;

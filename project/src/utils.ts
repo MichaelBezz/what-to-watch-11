@@ -26,3 +26,6 @@ export const formatRunTime = (minute: number) => {
 
 export const formatReviewDate = (date: string) =>
   dayjs(date).format('MMMM D, YYYY');
+
+export const formatFirstLetter = (text: string): string =>
+  text.charAt(0).toUpperCase() + text.slice(1);

@@ -1,27 +1,65 @@
-import {Link, generatePath} from 'react-router-dom';
+import {useEffect} from 'react';
+import {Link, generatePath, useParams, useNavigate} from 'react-router-dom';
+import {Helmet} from 'react-helmet-async';
+
+import {useAppDispatch} from '../../hooks/use-app-dispatch';
+import {useAppSelector} from '../../hooks/use-app-selector';
+import {fetchFilmById} from '../../store/film-data/api-actions';
+import {postReview} from '../../store/reviews-data/api-actions';
+import {getFilm, getIsFilmLoading} from '../../store/film-data/selectors';
 
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
 import ReviewForm from '../../components/review-form/review-form';
+import Loader from '../../components/loader/loader';
+import NotFoundPage from '../not-found-page/not-found-page';
 
-import {Film} from '../../types/film';
+import {NewReview} from '../../types/review';
 import {AppRoute} from '../../constants';
 
-type ReviewPageProps = {
-  film: Film;
-};
+function ReviewPage(): JSX.Element {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-function ReviewPage({film}: ReviewPageProps): JSX.Element {
-  const {
-    id,
-    name,
-    posterImage,
-    backgroundImage,
-    backgroundColor
-  } = film;
+  const {id} = useParams();
+  const filmId = Number(id);
+
+  const film = useAppSelector(getFilm);
+  const isFilmLoading = useAppSelector(getIsFilmLoading);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    if (isMounted && filmId) {
+      dispatch(fetchFilmById(filmId));
+    }
+
+    return () => {
+      isMounted = false;
+    };
+  }, [dispatch, filmId]);
+
+  const handleReviewFormSubmit = (review: NewReview) => {
+    dispatch(postReview({filmId, review}));
+    navigate(`${generatePath(AppRoute.Film, {id: `${filmId}`})}?tab=Reviews`);
+  };
+
+  if (isFilmLoading) {
+    return <Loader />;
+  }
+
+  if (!film || !id) {
+    return <NotFoundPage />;
+  }
+
+  const {name, posterImage, backgroundImage, backgroundColor} = film;
 
   return (
     <section className="film-card film-card--full" style={{backgroundColor}}>
+      <Helmet>
+        <title>WTW: {name}</title>
+      </Helmet>
+
       <div className="film-card__header">
         <div className="film-card__bg">
           <img src={backgroundImage} alt={name} />
@@ -61,7 +99,7 @@ function ReviewPage({film}: ReviewPageProps): JSX.Element {
         </div>
       </div>
 
-      <ReviewForm />
+      <ReviewForm onSubmit={handleReviewFormSubmit} />
 
     </section>
   );

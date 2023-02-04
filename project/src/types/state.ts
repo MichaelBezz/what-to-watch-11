@@ -1,6 +1,7 @@
 import {store} from '../store/store';
 import {UserData} from './user';
 import {Films, Film} from './film';
+import {Reviews} from './review';
 import {AuthorizationStatus} from '../constants';
 
 export type State = ReturnType<typeof store.getState>;
@@ -25,4 +26,9 @@ export type FilmDataState = {
 export type PromoFilmDataState = {
   film: Film | null;
   isPromoFilmLoading: boolean;
+};
+
+export type ReviewsDataState = {
+  reviews: Reviews | null;
+  isReviewsLoading: boolean;
 };

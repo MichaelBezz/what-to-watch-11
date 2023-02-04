@@ -5,7 +5,9 @@ import {Helmet} from 'react-helmet-async';
 import {useAppDispatch} from '../../hooks/use-app-dispatch';
 import {useAppSelector} from '../../hooks/use-app-selector';
 import {fetchFilmById} from '../../store/film-data/api-actions';
+import {fetchSimilarFilms} from '../../store/similar-films-data/api-actions';
 import {getFilm, getIsFilmLoading} from '../../store/film-data/selectors';
+import {getSimilarFilms, getIsSimilarFilmsLoading} from '../../store/similar-films-data/selectors';
 
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
@@ -17,18 +19,24 @@ import NotFoundPage from '../not-found-page/not-found-page';
 
 import {AppRoute} from '../../constants';
 
+const MAX_SIMILAR_FILMS = 4;
+
 function FilmPage(): JSX.Element {
   const dispatch = useAppDispatch();
   const {id} = useParams();
   const filmId = Number(id);
+
   const film = useAppSelector(getFilm);
   const isFilmLoading = useAppSelector(getIsFilmLoading);
+  const similarFilms = useAppSelector(getSimilarFilms);
+  const isSimilarFilmLoading = useAppSelector(getIsSimilarFilmsLoading);
 
   useEffect(() => {
     let isMounted = true;
 
     if (isMounted && filmId) {
       dispatch(fetchFilmById(filmId));
+      dispatch(fetchSimilarFilms(filmId));
     }
 
     return () => {
@@ -36,11 +44,11 @@ function FilmPage(): JSX.Element {
     };
   }, [dispatch, filmId]);
 
-  if (isFilmLoading) {
+  if (isFilmLoading || isSimilarFilmLoading) {
     return <Loader />;
   }
 
-  if (!film) {
+  if (!film || !id) {
     return <NotFoundPage />;
   }
 
@@ -113,7 +121,7 @@ function FilmPage(): JSX.Element {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          {/* <FilmsList films={similarFilms} /> */}
+          <FilmsList films={similarFilms.slice(0, MAX_SIMILAR_FILMS)} />
         </section>
 
         <Footer />

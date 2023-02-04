@@ -4,15 +4,15 @@ import {getIsAuthorization} from '../../store/user-data/selectors';
 import {AppRoute} from '../../constants';
 
 type PrivateRouteProps = {
-  children: JSX.Element;
+  privateComponent: JSX.Element;
 }
 
-function PrivateRoute({children}: PrivateRouteProps): JSX.Element {
+function PrivateRoute({privateComponent}: PrivateRouteProps): JSX.Element {
   const isAuthorization = useAppSelector(getIsAuthorization);
 
   return (
     isAuthorization
-      ? children
+      ? privateComponent
       : <Navigate to={AppRoute.Login} />
   );
 }

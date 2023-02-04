@@ -1,11 +1,15 @@
 import {useState, ChangeEvent, FormEvent} from 'react';
 import {Navigate, useNavigate} from 'react-router-dom';
+import {Helmet} from 'react-helmet-async';
+
 import {useAppDispatch} from '../../hooks/use-app-dispatch';
 import {useAppSelector} from '../../hooks/use-app-selector';
 import {login} from '../../store/user-data/api-actions';
 import {getIsAuthorization} from '../../store/user-data/selectors';
+
 import Logo from '../../components/logo/logo';
 import Footer from '../../components/footer/footer';
+
 import {AppRoute} from '../../constants';
 
 type FormData = {
@@ -39,6 +43,10 @@ function LoginPage(): JSX.Element {
 
   return (
     <div className="user-page">
+      <Helmet>
+        <title>WTW: Sign in page</title>
+      </Helmet>
+
       <header className="page-header user-page__head">
         <Logo />
 

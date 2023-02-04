@@ -45,7 +45,7 @@ function TabReviews({filmId}: TabReviewsProps): JSX.Element {
   }, [dispatch, filmId]);
 
   if (isReviewsLoading) {
-    return <Loader />;
+    return <Loader isInner />;
   }
 
   return (

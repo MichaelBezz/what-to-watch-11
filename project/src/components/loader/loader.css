@@ -3,7 +3,12 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: #000000;
+  background-color: #000000;
+}
+
+.center--inner {
+  height: 120px;
+  background-color: transparent;
 }
 
 .wave {

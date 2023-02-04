@@ -17,14 +17,16 @@ function UserBlock(): JSX.Element {
   return (isAuthorization && userData ? (
     <ul className="user-block">
       <li className="user-block__item">
-        <div className="user-block__avatar">
-          <img
-            src={userData.avatarUrl}
-            width="63"
-            height="63"
-            alt={userData.name}
-          />
-        </div>
+        <Link to={AppRoute.MyList}>
+          <div className="user-block__avatar">
+            <img
+              src={userData.avatarUrl}
+              width="63"
+              height="63"
+              alt={userData.name}
+            />
+          </div>
+        </Link>
       </li>
       <li className="user-block__item">
         <Link

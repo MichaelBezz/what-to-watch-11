@@ -1,4 +1,5 @@
 import {useEffect} from 'react';
+import {Helmet} from 'react-helmet-async';
 
 import {useAppDispatch} from '../../hooks/use-app-dispatch';
 import {useAppSelector} from '../../hooks/use-app-selector';
@@ -35,6 +36,10 @@ function MyListPage(): JSX.Element {
 
   return (
     <div className="user-page">
+      <Helmet>
+        <title>WTW: My list</title>
+      </Helmet>
+
       <header className="page-header user-page__head">
         <Logo />
 

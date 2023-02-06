@@ -40,7 +40,7 @@ function LoginPage(): JSX.Element {
   return (
     <div className="user-page">
       <Helmet>
-        <title>WTW: Sign in page</title>
+        <title>WTW: Sign in</title>
       </Helmet>
 
       <header className="page-header user-page__head">

@@ -1,5 +1,6 @@
 import Logo from '../logo/logo';
 import UserBlock from '../user-block/user-block';
+import MyListButton from '../my-list-button/my-list-button';
 import {Film} from '../../types/film';
 
 type PromoCardProps = {
@@ -42,13 +43,8 @@ function PromoCard({promoFilm}: PromoCardProps): JSX.Element {
                 </svg>
                 <span>Play</span>
               </button>
-              <button className="btn btn--list film-card__button" type="button">
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add"></use>
-                </svg>
-                <span>My list</span>
-                <span className="film-card__count">9</span>
-              </button>
+
+              <MyListButton filmId={promoFilm.id} />
             </div>
           </div>
         </div>

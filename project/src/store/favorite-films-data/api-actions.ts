@@ -22,7 +22,7 @@ export const fetchFavoriteFilms = createAsyncThunk<Films | void, undefined, {
   }
 );
 
-export const setFavoriteFilm = createAsyncThunk<
+export const postFavoriteFilm = createAsyncThunk<
 Film | void,
 {
   filmId: FilmId;

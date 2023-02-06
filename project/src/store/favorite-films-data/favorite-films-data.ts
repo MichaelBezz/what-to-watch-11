@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {fetchFavoriteFilms} from './api-actions';
+import {fetchFavoriteFilms, postFavoriteFilm} from './api-actions';
 import {FavoriteFilmsDataState} from '../../types/state';
 import {Reducer} from '../../constants';
 
@@ -24,6 +24,16 @@ export const favoriteFilmsData = createSlice({
       .addCase(fetchFavoriteFilms.rejected, (state) => {
         state.isFavoriteFilmsLoading = false;
         state.films = [];
+      })
+      .addCase(postFavoriteFilm.fulfilled, (state, {payload: film}) => {
+        if (film && film.isFavorite) {
+          state.films.push(film);
+        }
+
+        if (film && !film.isFavorite) {
+          const index = state.films.findIndex((item) => item.id === film.id);
+          state.films.splice(index, 1);
+        }
       });
   }
 });

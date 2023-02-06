@@ -4,3 +4,4 @@ import {Reducer} from '../../constants';
 
 export const getReviews = (state: State): Reviews => state[Reducer.Reviews].reviews;
 export const getIsReviewsLoading = (state: State): boolean => state[Reducer.Reviews].isReviewsLoading;
+export const getIsReviewPosting = (state: State): boolean => state[Reducer.Reviews].isReviewPosting;

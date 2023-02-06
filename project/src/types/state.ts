@@ -41,4 +41,5 @@ export type PromoFilmDataState = {
 export type ReviewsDataState = {
   reviews: Reviews;
   isReviewsLoading: boolean;
+  isReviewPosting: boolean;
 };

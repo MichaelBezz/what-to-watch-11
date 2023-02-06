@@ -27,5 +27,12 @@ export const formatRunTime = (minute: number) => {
 export const formatReviewDate = (date: string) =>
   dayjs(date).format('MMMM D, YYYY');
 
+export const formatRemainingTime = (remainingTime: number): string => {
+  const remainingTimeAsDuration = dayjs.duration(remainingTime, 'seconds');
+  return remainingTime >= 3600
+    ? remainingTimeAsDuration.format('-HH:mm:ss')
+    : remainingTimeAsDuration.format('-mm:ss');
+};
+
 export const formatFirstLetter = (text: string): string =>
   text.charAt(0).toUpperCase() + text.slice(1);

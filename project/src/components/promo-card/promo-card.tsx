@@ -1,20 +1,20 @@
+import {Link, generatePath} from 'react-router-dom';
+
 import Logo from '../logo/logo';
 import UserBlock from '../user-block/user-block';
+import PlayButton from '../play-button/play-button';
+import MyListButton from '../my-list-button/my-list-button';
+
 import {Film} from '../../types/film';
+import {AppRoute} from '../../constants';
+import './promo-card.css';
 
 type PromoCardProps = {
   promoFilm: Film;
 };
 
 function PromoCard({promoFilm}: PromoCardProps): JSX.Element {
-  const {
-    name,
-    posterImage,
-    backgroundImage,
-    backgroundColor,
-    genre,
-    released
-  } = promoFilm;
+  const {id, name, posterImage, backgroundImage, backgroundColor, genre, released} = promoFilm;
 
   return (
     <section className="film-card" style={{backgroundColor}}>
@@ -32,30 +32,25 @@ function PromoCard({promoFilm}: PromoCardProps): JSX.Element {
       <div className="film-card__wrap">
         <div className="film-card__info">
           <div className="film-card__poster">
-            <img src={posterImage} width="218" height="327" alt={name} />
+            <Link className="film-card__link" to={generatePath(AppRoute.Film, {id: `${id}`})}>
+              <img src={posterImage} width="218" height="327" alt={name} />
+            </Link>
           </div>
 
           <div className="film-card__desc">
-            <h2 className="film-card__title">{name}</h2>
+            <h2 className="film-card__title">
+              <Link className="film-card__link" to={generatePath(AppRoute.Film, {id: `${id}`})}>
+                {name}
+              </Link>
+            </h2>
             <p className="film-card__meta">
               <span className="film-card__genre">{genre}</span>
               <span className="film-card__year">{released}</span>
             </p>
 
             <div className="film-card__buttons">
-              <button className="btn btn--play film-card__button" type="button">
-                <svg viewBox="0 0 19 19" width="19" height="19">
-                  <use xlinkHref="#play-s"></use>
-                </svg>
-                <span>Play</span>
-              </button>
-              <button className="btn btn--list film-card__button" type="button">
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add"></use>
-                </svg>
-                <span>My list</span>
-                <span className="film-card__count">9</span>
-              </button>
+              <PlayButton filmId={id} />
+              <MyListButton filmId={promoFilm.id} />
             </div>
           </div>
         </div>

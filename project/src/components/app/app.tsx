@@ -6,8 +6,8 @@ import MainPage from '../../pages/main-page/main-page';
 import LoginPage from '../../pages/login-page/login-page';
 import FilmPage from '../../pages/film-page/film-page';
 import ReviewPage from '../../pages/review-page/review-page';
-// import PlayerPage from '../../pages/player-page/player-page';
-// import MyListPage from '../../pages/my-list-page/my-list-page';
+import MyListPage from '../../pages/my-list-page/my-list-page';
+import PlayerPage from '../../pages/player-page/player-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
 
@@ -27,29 +27,19 @@ function App(): JSX.Element {
         <Route path={AppRoute.Login} element={<LoginPage />} />
 
         <Route path={AppRoute.Film}>
-          <Route index element={<FilmPage />}/>
+          <Route index element={<FilmPage />} />
           <Route
             path={AppRoute.Review}
-            element={
-              <PrivateRoute>
-                <ReviewPage />
-              </PrivateRoute>
-            }
+            element={<PrivateRoute privateComponent={<ReviewPage />} />}
           />
         </Route>
 
-        {/* <Route
-          path={AppRoute.Player}
-          element={<PlayerPage film={films[0]} />}
-        /> */}
-        {/* <Route
+        <Route
           path={AppRoute.MyList}
-          element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.Authorization}>
-              <MyListPage films={films} />
-            </PrivateRoute>
-          }
-        /> */}
+          element={<PrivateRoute privateComponent={<MyListPage />} />}
+        />
+
+        <Route path={AppRoute.Player} element={<PlayerPage />} />
         <Route path={AppRoute.NotFound} element={<NotFoundPage />} />
       </Routes>
     </HelmetProvider>

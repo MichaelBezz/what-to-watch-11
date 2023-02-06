@@ -7,7 +7,9 @@
 }
 
 .center--inner {
+  justify-content: unset;
   height: 120px;
+  margin: auto;
   background-color: transparent;
 }
 

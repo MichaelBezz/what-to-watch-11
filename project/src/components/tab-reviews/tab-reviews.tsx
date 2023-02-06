@@ -50,8 +50,14 @@ function TabReviews({filmId}: TabReviewsProps): JSX.Element {
 
   return (
     <div className="film-card__reviews film-card__row">
-      <div className="film-card__reviews-col">{getReviewsByColumn(reviews, FilterPredicate.Odd)}</div>
-      <div className="film-card__reviews-col">{getReviewsByColumn(reviews, FilterPredicate.Even)}</div>
+      {reviews.length ? (
+        <>
+          <div className="film-card__reviews-col">{getReviewsByColumn(reviews, FilterPredicate.Odd)}</div>
+          <div className="film-card__reviews-col">{getReviewsByColumn(reviews, FilterPredicate.Even)}</div>
+        </>
+      ) : (
+        <h2>Leave your review first!</h2>
+      )}
     </div>
   );
 }

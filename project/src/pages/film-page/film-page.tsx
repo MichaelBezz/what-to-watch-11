@@ -12,6 +12,8 @@ import {getIsAuthorization} from '../../store/user-data/selectors';
 
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
+import PlayButton from '../../components/play-button/play-button';
+import MyListButton from '../../components/my-list-button/my-list-button';
 import TabsList from '../../components/tabs-list/tabs-list';
 import FilmsList from '../../components/films-list/films-list';
 import Footer from '../../components/footer/footer';
@@ -84,19 +86,8 @@ function FilmPage(): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
-                <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                  <span className="film-card__count">9</span>
-                </button>
+                <PlayButton filmId={filmId} />
+                <MyListButton filmId={film.id} />
 
                 {isAuthorization && (
                   <Link

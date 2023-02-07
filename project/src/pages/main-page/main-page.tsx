@@ -30,7 +30,15 @@ function MainPage(): JSX.Element {
   }, [dispatch]);
 
   useEffect(() => {
-    setFilmsDisplayed(Math.min(FILMS_PER_STEP, filmsByGenre.length));
+    let isMounted = true;
+
+    if (isMounted) {
+      setFilmsDisplayed(Math.min(FILMS_PER_STEP, filmsByGenre.length));
+    }
+
+    return () => {
+      isMounted = false;
+    };
   }, [filmsByGenre]);
 
   const handleShowMoreButtonClick = () => {

@@ -4,6 +4,7 @@ import {Helmet} from 'react-helmet-async';
 import {useAppDispatch} from '../../hooks/use-app-dispatch';
 import {useAppSelector} from '../../hooks/use-app-selector';
 import {fetchPromoFilm} from '../../store/promo-film-data/api-actions';
+import {fetchFilms} from '../../store/films-data/api-actions';
 import {getPromoFilm, getIsPromoFilmLoading} from '../../store/promo-film-data/selectors';
 import {getFilmsByGenre, getIsFilmsLoading} from '../../store/films-data/selectors';
 
@@ -27,6 +28,7 @@ function MainPage(): JSX.Element {
 
   useEffect(() => {
     dispatch(fetchPromoFilm());
+    dispatch(fetchFilms());
   }, [dispatch]);
 
   useEffect(() => {

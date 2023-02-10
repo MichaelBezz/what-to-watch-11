@@ -1,3 +1,4 @@
+import {memo} from 'react';
 import {Link} from 'react-router-dom';
 import {useAppDispatch} from '../../hooks/use-app-dispatch';
 import {useAppSelector} from '../../hooks/use-app-selector';
@@ -47,4 +48,4 @@ function UserBlock(): JSX.Element {
   ));
 }
 
-export default UserBlock;
+export default memo(UserBlock);

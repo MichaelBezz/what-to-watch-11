@@ -1,3 +1,4 @@
+import {memo} from 'react';
 import {Link} from 'react-router-dom';
 import cn from 'classnames';
 import {AppRoute} from '../../constants';
@@ -21,4 +22,4 @@ function Logo({isLight}: LogoProps): JSX.Element {
   );
 }
 
-export default Logo;
+export default memo(Logo);

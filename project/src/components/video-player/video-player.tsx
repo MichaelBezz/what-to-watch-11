@@ -36,6 +36,28 @@ function VideoPlayer({film}: VideoPlayerProps): JSX.Element {
     };
   }, [isPlaying]);
 
+  useEffect(() => {
+    let isVideoPlayerMounted = true;
+
+    const handelKeydown = (event: KeyboardEvent) => {
+      event.preventDefault();
+
+      if (event.key === ('Escape' || 'Esc')) {
+        videoRef.current?.requestFullscreen();
+        navigate(generatePath(AppRoute.Film, {id: `${id}`}));
+      }
+    };
+
+    if (isVideoPlayerMounted) {
+      document.addEventListener('keydown', handelKeydown);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handelKeydown);
+      isVideoPlayerMounted = false;
+    };
+  });
+
   const handleVideoDurationChange = (
     event: ChangeEvent<HTMLVideoElement>
   ) => {

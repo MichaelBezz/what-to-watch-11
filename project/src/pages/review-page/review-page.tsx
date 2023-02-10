@@ -28,15 +28,9 @@ function ReviewPage(): JSX.Element {
   const isFilmLoading = useAppSelector(getIsFilmLoading);
 
   useEffect(() => {
-    let isMounted = true;
-
-    if (isMounted && filmId) {
+    if (filmId) {
       dispatch(fetchFilmById(filmId));
     }
-
-    return () => {
-      isMounted = false;
-    };
   }, [dispatch, filmId]);
 
   const handleReviewFormSubmit = (review: NewReview) => {

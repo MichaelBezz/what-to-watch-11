@@ -20,15 +20,9 @@ function MyListButton ({filmId}: MyListButtonProps): JSX.Element {
   const isAuthorization = useAppSelector(getIsAuthorization);
 
   useEffect(() => {
-    let isMounted = true;
-
-    if (isMounted && isAuthorization) {
+    if (isAuthorization) {
       dispatch(fetchFavoriteFilms());
     }
-
-    return () => {
-      isMounted = false;
-    };
   }, [dispatch, isAuthorization]);
 
   const handleButtonClick = () => {

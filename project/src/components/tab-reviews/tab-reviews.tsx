@@ -33,15 +33,9 @@ function TabReviews({filmId}: TabReviewsProps): JSX.Element {
   const isReviewsLoading = useAppSelector(getIsReviewsLoading);
 
   useEffect(() => {
-    let isMounted = true;
-
-    if (isMounted && filmId) {
+    if (filmId) {
       dispatch(fetchReviews(filmId));
     }
-
-    return () => {
-      isMounted = false;
-    };
   }, [dispatch, filmId]);
 
   if (isReviewsLoading) {

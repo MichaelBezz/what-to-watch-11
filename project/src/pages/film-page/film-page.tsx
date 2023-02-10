@@ -36,16 +36,10 @@ function FilmPage(): JSX.Element {
   const isAuthorization = useAppSelector(getIsAuthorization);
 
   useEffect(() => {
-    let isMounted = true;
-
-    if (isMounted && filmId) {
+    if (filmId) {
       dispatch(fetchFilmById(filmId));
       dispatch(fetchSimilarFilms(filmId));
     }
-
-    return () => {
-      isMounted = false;
-    };
   }, [dispatch, filmId]);
 
   if (isFilmLoading || isSimilarFilmLoading) {

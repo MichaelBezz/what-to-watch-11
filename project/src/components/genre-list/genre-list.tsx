@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import {memo, useEffect} from 'react';
 import {Link, useSearchParams} from 'react-router-dom';
 import cn from 'classnames';
 import {useAppDispatch} from '../../hooks/use-app-dispatch';
@@ -45,4 +45,4 @@ function GenreList (): JSX.Element {
   );
 }
 
-export default GenreList;
+export default memo(GenreList);

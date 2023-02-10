@@ -19,15 +19,7 @@ function MyListPage(): JSX.Element {
   const isFavoriteFilmsLoading = useAppSelector(getIsFavoriteFilmsLoading);
 
   useEffect(() => {
-    let isMounted = true;
-
-    if (isMounted ) {
-      dispatch(fetchFavoriteFilms());
-    }
-
-    return () => {
-      isMounted = false;
-    };
+    dispatch(fetchFavoriteFilms());
   }, [dispatch]);
 
   if (isFavoriteFilmsLoading) {

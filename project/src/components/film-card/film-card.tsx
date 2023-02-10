@@ -16,17 +16,23 @@ function FilmCard({film}: FilmCardProps): JSX.Element {
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
   useEffect(() => {
+    let isMounted = true;
     let timer: ReturnType<typeof setTimeout>;
 
-    if (isHovered) {
+    if (isHovered && isMounted) {
       timer = setTimeout(() => {
         setIsPlaying(true);
       }, PLAYING_DELAY);
-    } else {
+    }
+
+    if (!isHovered && isMounted) {
       setIsPlaying(false);
     }
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      isMounted = false;
+    };
   }, [isHovered]);
 
   return (

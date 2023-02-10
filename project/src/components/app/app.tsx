@@ -2,6 +2,9 @@ import {useEffect} from 'react';
 import {Routes, Route, useLocation} from 'react-router-dom';
 import {HelmetProvider} from 'react-helmet-async';
 
+import {useAppDispatch} from '../../hooks/use-app-dispatch';
+import {checkAuthorization} from '../../store/user-data/api-actions';
+
 import MainPage from '../../pages/main-page/main-page';
 import LoginPage from '../../pages/login-page/login-page';
 import FilmPage from '../../pages/film-page/film-page';
@@ -15,6 +18,11 @@ import {AppRoute} from '../../constants';
 
 function App(): JSX.Element {
   const location = useLocation();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(checkAuthorization());
+  }, [dispatch]);
 
   useEffect(() => {
     window.scrollTo(0, 0);

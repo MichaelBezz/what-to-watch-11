@@ -21,15 +21,9 @@ function PlayerPage(): JSX.Element {
   const isFilmLoading = useAppSelector(getIsFilmLoading);
 
   useEffect(() => {
-    let isMounted = true;
-
-    if (isMounted && filmId) {
+    if (filmId) {
       dispatch(fetchFilmById(filmId));
     }
-
-    return () => {
-      isMounted = false;
-    };
   }, [dispatch, filmId]);
 
   if (isFilmLoading) {

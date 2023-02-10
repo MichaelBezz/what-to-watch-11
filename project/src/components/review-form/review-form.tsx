@@ -72,7 +72,7 @@ function ReviewForm({onSubmit}: ReviewFormProps): JSX.Element {
                   {`Rating ${star}`}
                 </label>
               </Fragment>
-            ))};
+            ))}
           </div>
         </div>
 

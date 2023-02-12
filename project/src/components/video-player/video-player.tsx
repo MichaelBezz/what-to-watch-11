@@ -2,7 +2,7 @@ import {useRef, useEffect, useState, ChangeEvent} from 'react';
 import {useNavigate, generatePath} from 'react-router-dom';
 import Loader from '../loader/loader';
 import {Film} from '../../types/film';
-import {formatRemainingTime} from '../../utils';
+import {formatRemainingTime} from '../../utils/utils';
 import {AppRoute} from '../../constants';
 
 type VideoPlayerProps = {

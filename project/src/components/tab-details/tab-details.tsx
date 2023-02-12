@@ -1,5 +1,5 @@
 import {Fragment} from 'react';
-import {formatRunTime} from '../../utils';
+import {formatRunTime} from '../../utils/utils';
 import {Film} from '../../types/film';
 
 type TabDetailsProps = {

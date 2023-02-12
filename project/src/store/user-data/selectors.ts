@@ -8,5 +8,5 @@ export const getUserData = (state: State): UserData | null => state[Reducer.User
 
 export const getIsAuthorization = createSelector(
   [getAuthorizationStatus],
-  (authorizationStatus): boolean => authorizationStatus === AuthorizationStatus.Authorization
+  (authorizationStatus): boolean => authorizationStatus === AuthorizationStatus.Authorized
 );

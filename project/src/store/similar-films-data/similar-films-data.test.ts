@@ -26,17 +26,12 @@ describe('Reducer: similarFilmsData', () => {
         .toEqual({films: [], isSimilarFilmsLoading: true});
     });
 
-    it('should fetch similar films if action fulfilled', () => {
+    it('should update loading status to "false" and fetch similar films if action fulfilled', () => {
       expect(similarFilmsData.reducer(state, {type: fetchSimilarFilms.fulfilled.type, payload: fakeFilms}))
         .toEqual({films: fakeFilms, isSimilarFilmsLoading: false});
     });
 
-    it('should update loading status to "false" if action fulfilled', () => {
-      expect(similarFilmsData.reducer(state, {type: fetchSimilarFilms.fulfilled.type, payload: fakeFilms}))
-        .toEqual({films: fakeFilms, isSimilarFilmsLoading: false});
-    });
-
-    it('should update loading status to "false" if action rejected', () => {
+    it('should update loading status to "false" and return empty array of similar films if action rejected', () => {
       expect(similarFilmsData.reducer(state, {type: fetchSimilarFilms.rejected.type}))
         .toEqual({films: [], isSimilarFilmsLoading: false});
     });

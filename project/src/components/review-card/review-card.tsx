@@ -1,4 +1,4 @@
-import {formatReviewDate} from '../../utils';
+import {formatReviewDate} from '../../utils/utils';
 import {Review} from '../../types/review';
 
 type ReviewProps = {

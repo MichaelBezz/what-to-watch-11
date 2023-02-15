@@ -19,23 +19,23 @@ export const userData = createSlice({
   extraReducers(builder) {
     builder
       .addCase(checkAuthorization.fulfilled, (state, action) => {
-        state.authorizationStatus = AuthorizationStatus.Authorization;
+        state.authorizationStatus = AuthorizationStatus.Authorized;
         state.userData = action.payload ?? null;
       })
       .addCase(checkAuthorization.rejected, (state) => {
-        state.authorizationStatus = AuthorizationStatus.NoAuthorization;
+        state.authorizationStatus = AuthorizationStatus.NoAuthorized;
         state.userData = null;
       })
       .addCase(login.fulfilled, (state, action) => {
-        state.authorizationStatus = AuthorizationStatus.Authorization;
+        state.authorizationStatus = AuthorizationStatus.Authorized;
         state.userData = action.payload ?? null;
       })
       .addCase(login.rejected, (state) => {
-        state.authorizationStatus = AuthorizationStatus.NoAuthorization;
+        state.authorizationStatus = AuthorizationStatus.NoAuthorized;
         state.userData = null;
       })
       .addCase(logout.fulfilled, (state) => {
-        state.authorizationStatus = AuthorizationStatus.NoAuthorization;
+        state.authorizationStatus = AuthorizationStatus.NoAuthorized;
         state.userData = null;
       });
   }

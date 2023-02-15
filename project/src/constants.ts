@@ -19,8 +19,8 @@ export enum APIRoute {
 }
 
 export enum AuthorizationStatus {
-  Authorization = 'AUTHORIZATION',
-  NoAuthorization = 'NO_AUTHORIZATION',
+  Authorized = 'AUTHORIZED',
+  NoAuthorized = 'NO_AUTHORIZED',
   Unknown = 'UNKNOWN'
 }
 
@@ -38,19 +38,6 @@ export enum Tab {
   Overview = 'Overview',
   Details = 'Details',
   Reviews = 'Reviews'
-}
-
-export enum Genre {
-  Default = 'All genres',
-  Comedies = 'Comedies',
-  Crime = 'Crime',
-  Documentary = 'Documentary',
-  Dramas = 'Dramas',
-  Horror = 'Horror',
-  Family = 'Family',
-  Romance = 'Romance',
-  SciFi = 'Sci-Fi',
-  Thrillers = 'Thrillers'
 }
 
 export const DEFAULT_GENRE = 'All genres';
